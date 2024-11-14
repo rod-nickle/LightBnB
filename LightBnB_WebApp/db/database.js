@@ -85,11 +85,9 @@ const addUser = function (user) {
   return pool
   .query(queryString, queryParms)
   .then((result) => {
-    console.log(result.rows);
     return result.rows[0];
   })
   .catch((err) => {
-    console.log(err.message);
     return err.message;
   });
 
@@ -103,7 +101,34 @@ const addUser = function (user) {
  * @return {Promise<[{}]>} A promise to the reservations.
  */
 const getAllReservations = function (guest_id, limit = 10) {
-  return getAllProperties(null, 2);
+  const queryString = `
+  SELECT 
+    r.id, r.start_date, r.end_date,
+    p.title, p.thumbnail_photo_url, p.number_of_bedrooms, p.number_of_bathrooms, p.parking_spaces, p.cost_per_night, 
+    avg(pr.rating) as average_rating
+  FROM reservations r
+  JOIN properties p
+  ON p.id = r.property_id
+  JOIN property_reviews pr
+  ON pr.property_id = p.id
+  WHERE r.guest_id = $1
+  GROUP BY 
+    r.id, r.start_date, r.end_date,
+    p.title, p.thumbnail_photo_url, p.number_of_bedrooms, p.number_of_bathrooms, p.parking_spaces, p.cost_per_night
+  ORDER BY r.start_date
+  LIMIT $2;
+  `;
+
+  const queryParms = [guest_id, limit];
+
+  return pool
+  .query(queryString, queryParms)
+  .then((result) => {
+    return result.rows;
+  })
+  .catch((err) => {
+    return err.message;
+  });
 };
 
 /// Properties
