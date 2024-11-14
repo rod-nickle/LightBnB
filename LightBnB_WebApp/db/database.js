@@ -239,10 +239,10 @@ const addProperty = function (property) {
   return pool
   .query(queryString, queryParms)
   .then((result) => {
-    console.log(result.rows);
+    return result.rows[0];
   })
   .catch((err) => {
-    console.log(err.message);
+    return err.message;
   });
 
 };
