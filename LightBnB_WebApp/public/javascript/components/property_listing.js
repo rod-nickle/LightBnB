@@ -9,6 +9,7 @@ $(() => {
         </section>
         <section class="property-listing__details">
           <h3 class="property-listing__title">${property.title}</h3>
+          <h3 class="property-listing__title">${property.city}</h3>
           <ul class="property-listing__details">
             <li>number_of_bedrooms: ${property.number_of_bedrooms}</li>
             <li>number_of_bathrooms: ${property.number_of_bathrooms}</li>
