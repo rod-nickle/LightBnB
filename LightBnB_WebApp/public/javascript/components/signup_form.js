@@ -5,15 +5,15 @@ $(() => {
         <p>Sign Up</p>
 
         <div class="sign-up-form__field-wrapper">
-            <input type="text" name="name" placeholder="Username">
+            <input type="text" name="name" placeholder="Username" autocomplete="off">
           </div>
 
         <div class="sign-up-form__field-wrapper">
-          <input type="email" name="email" placeholder="Email">
+          <input type="email" name="email" placeholder="Email" autocomplete="off">
         </div>
   
         <div class="sign-up-form__field-wrapper">
-            <input type="password" name="password" placeholder="Password">
+            <input type="password" name="password" placeholder="Password" autocomplete="off">
           </div>
   
         <div class="sign-up-form__field-wrapper">

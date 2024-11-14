@@ -19,15 +19,6 @@ app.use(
 const apiRoutes = require("./routes/apiRoutes");
 const userRoutes = require("./routes/userRoutes");
 
-const { Pool } = require("pg");
-
-const pool = new Pool({
-  user: "labber",
-  password: "labber",
-  host: "localhost",
-  database: "lightbnb",
-});
-
 
 // /api/endpoints
 app.use("/api", apiRoutes);
